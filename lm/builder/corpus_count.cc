@@ -245,10 +245,6 @@ template <class Vocab> void CorpusCount::RunWithVocab(const util::stream::ChainP
     writer.StartSentence();
     while (from_.ReadWordSameLine(w, delimiters)) {
       WordIndex word = vocab.FindOrInsert(w);
-      if (UTIL_UNLIKELY(vocab.IsSpecial(word))) {
-        ComplainDisallowed(w, disallowed_symbol_action_);
-        continue;
-      }
       writer.Append(word);
       ++count;
     }
